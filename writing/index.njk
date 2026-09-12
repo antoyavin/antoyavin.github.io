@@ -1,0 +1,44 @@
+---
+layout: base.njk
+title: Writing
+---
+
+<section class="writing-section">
+  <p class="section-label">Writing</p>
+
+  <div class="tag-filter" id="tagFilter" role="group" aria-label="Filter by tag">
+    <button class="tag-btn active" data-tag="all">All</button>
+    {% for tag in collections.postTags %}
+    <button class="tag-btn" data-tag="{{ tag }}">{{ tag }}</button>
+    {% endfor %}
+  </div>
+
+  <div id="postList">
+    {% for post in collections.posts %}
+    <div class="post-row" data-tags="{{ post.data.tags | join(' ') }}">
+      <time class="post-date" datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time>
+      <a class="post-title" href="{{ post.url }}">{{ post.data.title }}</a>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+(function () {
+  const buttons = document.querySelectorAll('.tag-btn');
+  const rows = document.querySelectorAll('#postList .post-row');
+
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      buttons.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+
+      const tag = btn.dataset.tag;
+      rows.forEach(function (row) {
+        const tags = row.dataset.tags ? row.dataset.tags.split(' ') : [];
+        row.hidden = tag !== 'all' && !tags.includes(tag);
+      });
+    });
+  });
+}());
+</script>

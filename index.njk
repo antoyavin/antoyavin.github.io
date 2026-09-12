@@ -1,0 +1,43 @@
+---
+layout: base.njk
+---
+
+{% set about = collections.about[0] %}
+
+<section id="about" class="about-section">
+  {{ about.templateContent | safe }}
+
+  <div class="certifications">
+    <p class="section-label">Certifications</p>
+    {% for cert in about.data.certifications %}
+    <div class="cert-row">
+      <a href="{{ cert.url }}" target="_blank" rel="noopener noreferrer">{{ cert.name }}</a>
+      <span class="cert-year">{{ cert.year }}</span>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section id="projects" class="section">
+  <p class="section-label">Projects</p>
+  {% for project in collections.projects %}
+  <div class="row project-row">
+    <div class="project-info">
+      <a href="{{ project.data.url }}" target="_blank" rel="noopener noreferrer">{{ project.data.title }}</a>
+      <div class="project-desc">{{ project.templateContent | safe }}</div>
+    </div>
+    <span class="project-year">{{ project.data.year }}</span>
+  </div>
+  {% endfor %}
+</section>
+
+<section id="writing" class="section">
+  <p class="section-label">Writing</p>
+  {% for post in collections.posts | head(3) %}
+  <div class="post-row">
+    <time class="post-date" datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time>
+    <a class="post-title" href="{{ post.url }}">{{ post.data.title }}</a>
+  </div>
+  {% endfor %}
+  <a class="view-all" href="/writing/">All posts &rarr;</a>
+</section>
