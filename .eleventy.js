@@ -1,6 +1,7 @@
 module.exports = function (eleventyConfig) {
   // Passthrough copy
   eleventyConfig.addPassthroughCopy("assets");
+  eleventyConfig.addPassthroughCopy(".nojekyll");
 
   // Global site data
   eleventyConfig.addGlobalData("site", {
