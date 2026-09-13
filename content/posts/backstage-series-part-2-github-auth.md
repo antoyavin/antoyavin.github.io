@@ -9,7 +9,7 @@ layout: post.njk
 permalink: "/writing/{{ page.fileSlug }}/"
 ---
 
-In [Part 1](#), we bootstrapped a Backstage instance, wired it to PostgreSQL, and got a running app. At this point, anyone who opens the UI lands directly in the app as a guest — no authentication, no identity. In this article we'll fix that in two steps:
+In [Part 1](/writing/backstage-series-part-1-getting-started/), we bootstrapped a Backstage instance, wired it to PostgreSQL, and got a running app. At this point, anyone who opens the UI lands directly in the app as a guest — no authentication, no identity. In this article we'll fix that in two steps:
 
 1. Users can sign in with their GitHub account (OAuth)
 2. Backstage automatically imports users and teams from your GitHub organization into the Software Catalog
